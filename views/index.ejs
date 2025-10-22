@@ -1,26 +1,36 @@
 <html lang="en">
 <%- include("./partials/head.ejs") %>
 
-<body>
-  <%- include("./partials/nav.ejs") %>
+  <body>
+    <%- include("./partials/nav.ejs") %>
 
-  <div class="blogs content">
-    <h2>Click on a blog to view and delete it</h2>
+      <div class="container">
+        <div class="blogs content">
+          <h2>Latest Blog Posts</h2>
 
-    <% if (blogs.length > 0) { %>
-      <% blogs.forEach(blog => { %>
-        <a class="single" href="/blogs/<%= blog._id %>">
-          <h3 class="title"><%= blog.title %></h3>
-          <p class="snippet"><%= blog.snippet %></p>
-          <p class="body"><%= blog.body %></p>
-        </a>
-      <% }) %>
-    <% } else { %>
-      <p>There are no blogs to display...</p>
-    <% } %>
-    
-  </div>
+          <% if (blogs.length> 0) { %>
+            <% blogs.forEach(blog=> { %>
+              <a class="single" href="/blogs/<%= blog.id %>">
+                <h3 class="title">
+                  <%= blog.title %>
+                </h3>
+                <p class="snippet">
+                  <%= blog.snippet %>
+                </p>
+                <p class="body">
+                  <%= blog.body %>
+                </p>
+              </a>
+              <% }) %>
+                <% } else { %>
+                  <p>No blog posts yet. <a href="/blogs/create"
+                      style="color: var(--primary-color); text-decoration: none;">Create your first post</a>!</p>
+                  <% } %>
 
-  <%- include("./partials/footer.ejs") %>
-</body>
+        </div>
+      </div>
+
+      <%- include("./partials/footer.ejs") %>
+  </body>
+
 </html>
